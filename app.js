@@ -85,8 +85,6 @@ const checkWin = () => {
   if (win) wins++;
   winRatio = (wins / game * 100)
   text.textContent = (win ? 'Wygrałeś' : 'Przegrałeś') + ` ${wins} / ${game}, win ratio: ${winRatio.toFixed()}%`;
-
-  setTimeout(newGame, 2000);
 }
 
 const revealAll = () => {

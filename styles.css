@@ -96,3 +96,24 @@ body {
   transform: translate(-50%, -50%);
   font-size: 44px;
 }
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.5rem 0.75rem;
+
+  font-family: sans-serif;
+  font-size: 16px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover,
+button:active {
+color: #c70000;;
+border-color: #c70000;;
+}
