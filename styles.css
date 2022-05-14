@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 30px;
+
+  background: hsl(0, 0%, 20%);
+}
+
+.text {
+  font-family: sans-serif;
+  color: #eee;
+  font-size: 22px;
+}
+
+.doorsBox {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.door {
+  position: relative;
+  width: 25%;
+  height: 270px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.door.selected {
+  box-shadow: 0 0 50px white;
+}
+
+.door__front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: chocolate;
+  transform-origin: left;
+  transition: transform 0.5s ease-in-out;
+  box-shadow: 30px 0 50px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.door__front::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  top: 50%;
+  right: 10px;
+  background-color: #924500;
+  transition: transform 0.1s ease-in-out;
+  transform-origin: right;
+}
+
+.door__front.open {
+  transform: rotateY(-95deg);
+}
+
+.door__front.open::after {
+  transform: rotateZ(-45deg);
+}
+
+.door__inside {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg,
+      rgba(193, 124, 116, 1) 13%,
+      rgba(73, 88, 103, 1) 13%,
+      rgba(79, 100, 124, 1) 15%,
+      rgba(87, 115, 153, 1) 15%);
+  overflow: hidden;
+}
+
+.content {
+  position: absolute;
+  left: 50%;
+  bottom: 0%;
+  transform: translate(-50%, -50%);
+  font-size: 44px;
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.5rem 0.75rem;
+
+  font-family: sans-serif;
+  font-size: 16px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover,
+button:active {
+color: #c70000;;
+border-color: #c70000;;
+}
