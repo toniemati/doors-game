@@ -7,17 +7,19 @@ const items = [
   { emoji: '💩', price: false, open: false },
 ];
 
+let isChecking = false;
 let game = 0;
 let wins = 0;
 let round, choice;
 let winRatio = 0;
 
 doors.forEach((door, idx) => door.addEventListener('click', () => {
-  if (!items[idx].open) {
-    choice = idx;
-    door.classList.add('selected');
-    round++;
-  }
+  if (items[idx].open || isChecking) return;
+
+  choice = idx;
+  door.classList.add('selected');
+  round++;
+
 
   if (round == 2) {
     checkWin();
@@ -30,6 +32,7 @@ doors.forEach((door, idx) => door.addEventListener('click', () => {
 }))
 
 const newGame = () => {
+  isChecking = false;
   round = 0;
   choice = -1;
   closeAll();
@@ -39,7 +42,7 @@ const newGame = () => {
 
 const closeAll = () => {
   doors.forEach((door, idx) => {
-    door.classList.remove('selected'); 
+    door.classList.remove('selected');
     door.children[0].classList.remove('open');
     items[idx].open = false;
   })
@@ -76,11 +79,14 @@ const revealOne = () => {
 }
 
 const checkWin = () => {
+  isChecking = true;
   const win = items[choice].price;
   game++;
   if (win) wins++;
-  winRatio=(wins / game * 100)
-  text.textContent = (win ? 'Wygrałeś' : 'Przegrałeś') + `, win ratio: ${winRatio.toFixed()}%`;
+  winRatio = (wins / game * 100)
+  text.textContent = (win ? 'Wygrałeś' : 'Przegrałeś') + ` ${wins} / ${game}, win ratio: ${winRatio.toFixed()}%`;
+
+  setTimeout(newGame, 2000);
 }
 
 const revealAll = () => {
